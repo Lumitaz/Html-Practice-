@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Fantasy — A Devotion</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Italianno&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Shared SVG defs -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="gradCrystalBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"   stop-color="#bcdcf0" stop-opacity="0.95"/>
+                <stop offset="55%"  stop-color="#8fc1e0" stop-opacity="0.85"/>
+                <stop offset="100%" stop-color="#4a7fa7" stop-opacity="0.7"/>
+            </linearGradient>
+            <linearGradient id="gradCrystalGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"   stop-color="#f5d28c" stop-opacity="0.95"/>
+                <stop offset="55%"  stop-color="#d4a84b" stop-opacity="0.85"/>
+                <stop offset="100%" stop-color="#7a5e2a" stop-opacity="0.7"/>
+            </linearGradient>
+            <radialGradient id="gradGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"   stop-color="#f0c66e" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#f0c66e" stop-opacity="0"/>
+            </radialGradient>
+        </defs>
+    </svg>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#top" class="nav-mark">
+                F<span class="ampersand">·</span>F · A Devotion
+            </a>
+            <ul class="nav-links">
+                <li><a href="#beginnings" class="nav-link">Beginnings</a></li>
+                <li><a href="#worlds" class="nav-link">Worlds</a></li>
+                <li><a href="#music" class="nav-link">The Music</a></li>
+                <li><a href="#memory" class="nav-link">Memory</a></li>
+                <li class="dropdown">
+                    <button type="button" class="dropdown-trigger" aria-haspopup="true">
+                        The Games <span class="chev">▾</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                            <li><a href="ff1.html"><span class="num">I</span><span class="name">Classical Fantasy</span></a></li>
+                            <li><a href="ff2.html"><span class="num">II</span><span class="name">Rebellion</span></a></li>
+                            <li><a href="ff3.html"><span class="num">III</span><span class="name">Crystal Radiance</span></a></li>
+                            <li><a href="ff4.html"><span class="num">IV</span><span class="name">Lunar Gothic</span></a></li>
+                            <li><a href="ff5.html"><span class="num">V</span><span class="name">World-Shift</span></a></li>
+                            <li><a href="ff6.html"><span class="num">VI</span><span class="name">Magitek Dusk</span></a></li>
+                            <li><a href="ff7.html"><span class="num">VII</span><span class="name">Industrial Mako</span></a></li>
+                            <li><a href="ff8.html"><span class="num">VIII</span><span class="name">Sleek Silver</span></a></li>
+                            <li><a href="ff9.html"><span class="num">IX</span><span class="name">Theatrical Warmth</span></a></li>
+                            <li><a href="ff10.html"><span class="num">X</span><span class="name">Tropical Pilgrimage</span></a></li>
+                            <li><a href="ff11.html"><span class="num">XI</span><span class="name">Adventurer's Amber</span></a></li>
+                            <li><a href="ff12.html"><span class="num">XII</span><span class="name">Desert Empire</span></a></li>
+                            <li><a href="ff13.html"><span class="num">XIII</span><span class="name">Crystal Future</span></a></li>
+                            <li><a href="ff14.html"><span class="num">XIV</span><span class="name">Aurora Realm</span></a></li>
+                            <li><a href="ff15.html"><span class="num">XV</span><span class="name">Asphalt Royalty</span></a></li>
+                            <li><a href="ff16.html"><span class="num">XVI</span><span class="name">Phoenix Ember</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <header class="hero" id="top">
+        <div class="hero-eyebrow">A Devotion · An Open Letter · A Lifelong Walk</div>
+        <h1 class="hero-title">Final <span class="ampersand">·</span> Fantasy</h1>
+        <p class="hero-tagline">
+            For every world I have wandered, every melody I have carried home.
+            This is a love letter, written slowly, in sixteen acts.
+        </p>
+        <div class="hero-crystal">
+            <svg width="56" height="76" viewBox="0 0 56 76" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <ellipse cx="28" cy="38" rx="36" ry="36" fill="url(#gradGlow)"/>
+                <polygon points="28,4 50,30 28,72 6,30"
+                         fill="url(#gradCrystalBlue)"
+                         stroke="#d4a84b"
+                         stroke-width="0.8"
+                         opacity="0.95"/>
+                <line x1="28" y1="4"  x2="28" y2="72" stroke="#f0c66e" stroke-width="0.5" opacity="0.7"/>
+                <line x1="6"  y1="30" x2="50" y2="30" stroke="#f0c66e" stroke-width="0.5" opacity="0.7"/>
+                <polygon points="28,4 50,30 28,30" fill="#ffffff" opacity="0.08"/>
+            </svg>
+        </div>
+        <a href="#beginnings" class="scroll-cue">Begin<span>↓</span></a>
+    </header>
+
+
+    <!-- I. BEGINNINGS -->
+    <section class="section" id="beginnings">
+        <div class="section-inner">
+            <div class="section-number">I · Beginnings</div>
+            <h2 class="section-title">The first time I held a <em>crystal</em>, I did not know it was a covenant.</h2>
+            <div class="prose">
+                <p>
+                    <span class="dropcap">I</span>
+                    do not remember the first time I met you. I only remember that the world,
+                    afterwards, was wider. Somewhere between a darkened bedroom and a screen
+                    no larger than a window, you handed me a sword and a crystal and asked
+                    me to begin. I did. I have been beginning ever since.
+                </p>
+                <p>
+                    There is a particular kind of trust a child gives an unfamiliar map.
+                    You ask them to walk, and they walk. You ask them to believe in a
+                    floating castle, in a buried sea, in a town that exists only because
+                    a stranger remembers it — and they believe. You did this to me, gently,
+                    over years. The result is that I am still walking.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- II. WORLDS -->
+    <section class="section" id="worlds">
+        <div class="section-inner">
+            <div class="section-number">II · Worlds</div>
+            <h2 class="section-title">A cartographer of <em>skies</em> I will never finish charting.</h2>
+            <div class="split">
+                <aside class="aside">
+                    <div class="aside-art">
+                        <svg width="220" height="280" viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <ellipse cx="110" cy="140" rx="100" ry="100" fill="url(#gradGlow)" opacity="0.6"/>
+                            <polygon points="110,20 180,110 110,260 40,110"
+                                     fill="url(#gradCrystalGold)"
+                                     stroke="#8fc1e0"
+                                     stroke-width="0.6"
+                                     opacity="0.85"/>
+                            <line x1="110" y1="20"  x2="110" y2="260" stroke="#8fc1e0" stroke-width="0.4" opacity="0.7"/>
+                            <line x1="40"  y1="110" x2="180" y2="110" stroke="#8fc1e0" stroke-width="0.4" opacity="0.7"/>
+                            <polygon points="110,20 180,110 110,110" fill="#ffffff" opacity="0.10"/>
+                            <polygon points="30,40 38,52 30,72 22,52" fill="url(#gradCrystalBlue)" opacity="0.7"/>
+                            <polygon points="195,210 202,222 195,240 188,222" fill="url(#gradCrystalBlue)" opacity="0.7"/>
+                            <polygon points="20,200 26,210 20,224 14,210" fill="url(#gradCrystalGold)" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <p class="aside-caption">Always one more island<br>than the map remembers.</p>
+                </aside>
+                <div class="prose">
+                    <p>
+                        You taught me that hope can look like four travelers in a desert,
+                        like an airship cresting a cloudbank, like an opera house lit for
+                        one. You taught me that grief has a shape, and that the shape
+                        sometimes resembles a friend laid down in still water. You showed
+                        me how a single phrase of melody, no longer than a held breath,
+                        could survive thirty years and find me again on a Tuesday, in a
+                        kitchen, doing nothing at all.
+                    </p>
+                    <p>
+                        I have loved your kings and your thieves, your knight-mages and
+                        your blue mages, your engineers and your summoners and your quiet,
+                        undeclared poets. I have loved your villains for what they showed
+                        me about wanting. I have loved the way your maps always have one
+                        more island than you expect.
+                    </p>
+                    <p>
+                        Every fifth or sixth time I think I have learned everything you
+                        can teach me, you change the shape of the world again. You move
+                        the camera. You set down the controller and pick up a brush.
+                        You build a city on a moon and ask me — as if it is nothing —
+                        to feel at home there. And I do. I always do.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PULL QUOTE -->
+    <section class="pullquote">
+        <div class="pullquote-mark">~ · ~</div>
+        <p class="pullquote-text">
+            A town is not a town until it has its theme. A hero is not yet a hero<br>
+            until something rises beneath them and tells me, in a language<br>
+            older than language, <span class="accent">who they are about to become.</span>
+        </p>
+    </section>
+
+
+    <!-- III. THE MUSIC -->
+    <section class="music-feature" id="music">
+        <div class="music-feature-header">
+            <div class="music-feature-number">III · The Music</div>
+            <h2 class="music-feature-title">Music as Place</h2>
+            <p class="music-feature-sub">on the themes that bind the series, and the way they change</p>
+            <div class="music-divider">
+                <div class="line"></div>
+                <svg width="22" height="30" viewBox="0 0 22 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <polygon points="11,2 19,11 11,28 3,11" fill="url(#gradCrystalBlue)" stroke="#d4a84b" stroke-width="0.5" opacity="0.9"/>
+                </svg>
+                <div class="line"></div>
+            </div>
+        </div>
+
+        <div class="music-feature-inner">
+            <div class="your-essay">
+
+                <!-- ↓↓↓ REPLACE THE TEXT BELOW WITH YOUR ESSAY ↓↓↓ -->
+
+                <p>
+                    [ Opening paragraph. Set the stage — what does the music of this
+                    series mean to you? When did you first notice it as its own kind
+                    of storytelling? ]
+                </p>
+
+                <p>
+                    [ Second paragraph. A natural place to write about the Prelude —
+                    how its rising arpeggio has carried across nearly every entry,
+                    and how each composer has rephrased it for their own world. ]
+                </p>
+
+                <p>
+                    [ Third paragraph. Trace how a main theme transforms over the
+                    series — chiptune marches in the early games, the orchestral
+                    sweep of the mid era, the cinematic and choral writing of the
+                    later titles. ]
+                </p>
+
+                <p>
+                    [ Fourth paragraph. Write about the Victory Fanfare, the
+                    chocobo theme, the prologue strings — the small refrains that
+                    re-enter and re-enter, never quite the same twice. ]
+                </p>
+
+                <p>
+                    [ Closing paragraph. What does it mean to you that a melody
+                    can cross decades and platforms and still feel like coming
+                    home? ]
+                </p>
+
+                <!-- ↑↑↑ END OF YOUR ESSAY ↑↑↑ -->
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- IV. MEMORY -->
+    <section class="section" id="memory">
+        <div class="section-inner">
+            <div class="section-number">IV · Memory</div>
+            <h2 class="section-title">What I carry, when the screen goes <em>dark.</em></h2>
+            <div class="split">
+                <div class="prose">
+                    <p>
+                        Whatever else I forget, I will not forget that you made me a person
+                        who listens. That when I close my eyes, I can still find the inside
+                        of a moonlit forest, or the hush before a final boss, or the held
+                        breath at the top of a tower with the wind moving through it.
+                    </p>
+                    <p>
+                        I think often about how strange it is to grieve characters who never
+                        existed, in places that were never real, scored by composers I will
+                        never meet. And yet the grief is real. The places are real, because
+                        I went there. The friends are real, because I chose them. Whatever
+                        the philosophers say about fiction, you have always known better.
+                    </p>
+                    <p>
+                        You taught me that loss does not undo a thing. A song that ended is
+                        still a song. A hero who fell is still a hero. A world that resets
+                        when I close the disc still asks me, the next time I return, whether
+                        I remember the way to the temple. <span class="crystal-word">I do.</span>
+                        I remember the way.
+                    </p>
+                </div>
+                <aside class="aside">
+                    <div class="aside-art">
+                        <svg width="220" height="280" viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <g stroke="#d4a84b" stroke-width="0.4" opacity="0.5" fill="none">
+                                <line x1="40"  y1="50"  x2="100" y2="90"/>
+                                <line x1="100" y1="90"  x2="160" y2="60"/>
+                                <line x1="100" y1="90"  x2="80"  y2="170"/>
+                                <line x1="80"  y1="170" x2="140" y2="200"/>
+                                <line x1="140" y1="200" x2="180" y2="140"/>
+                                <line x1="80"  y1="170" x2="40"  y2="240"/>
+                            </g>
+                            <g fill="#f0c66e">
+                                <circle cx="40"  cy="50"  r="2.5"/>
+                                <circle cx="100" cy="90"  r="3"/>
+                                <circle cx="160" cy="60"  r="2.5"/>
+                                <circle cx="80"  cy="170" r="3"/>
+                                <circle cx="140" cy="200" r="2.5"/>
+                                <circle cx="180" cy="140" r="2.5"/>
+                                <circle cx="40"  cy="240" r="2.5"/>
+                            </g>
+                            <ellipse cx="110" cy="140" rx="60" ry="60" fill="url(#gradGlow)" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <p class="aside-caption">The shape of a song<br>after the song is over.</p>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- OUTRO -->
+    <section class="outro" id="yours">
+        <div class="outro-eyebrow">V · Ever Yours</div>
+        <p class="outro-line">
+            Thank you for the crystals. Thank you for the airships. Thank you for
+            the small, persistent miracle of telling the same story differently,
+            sixteen times, and never once telling it the same way twice.
+        </p>
+        <p class="outro-line">
+            Across every save file, every starting town, every closing credit —
+        </p>
+        <div class="outro-signature">Luna</div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <svg width="100" height="14" viewBox="0 0 100 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="0"  y1="7" x2="40"  y2="7" stroke="#8a7e5e" stroke-width="0.5" opacity="0.6"/>
+            <line x1="60" y1="7" x2="100" y2="7" stroke="#8a7e5e" stroke-width="0.5" opacity="0.6"/>
+            <circle cx="50" cy="7" r="3" fill="none" stroke="#d4a84b" stroke-width="0.5" opacity="0.7"/>
+            <circle cx="50" cy="7" r="1" fill="#f0c66e" opacity="0.85"/>
+        </svg>
+        <div class="footer-mark">Fin · A Devotion</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

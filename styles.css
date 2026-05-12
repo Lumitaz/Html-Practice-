@@ -1,0 +1,1083 @@
+/* ============================================================ */
+/* FINAL FANTASY · A DEVOTION                                   */
+/* Shared stylesheet for index + all 16 game pages              */
+/* ============================================================ */
+
+:root {
+    /* Base palette                                              */
+    --bg-deep:       #07091a;
+    --bg-mid:        #0e1226;
+    --bg-paper:      #15192c;
+    --bg-glow:       #1f2540;
+    --ink:           #ece3c8;
+    --ink-soft:      #c8bc9a;
+    --ink-fade:      #8a7e5e;
+    --gold:          #d4a84b;
+    --gold-bright:   #f0c66e;
+    --gold-dim:      #7a5e2a;
+    --crystal:       #8fc1e0;
+    --crystal-deep:  #4a7fa7;
+
+    /* Per-page accent (overridden inline on game pages)         */
+    /* Hex form for direct use, RGB triplet for use with rgba()  */
+    --game-accent:     #f0c66e;
+    --game-accent-rgb: 240, 198, 110;
+    --game-deep:       #7a5e2a;
+    --game-deep-rgb:   122, 94, 42;
+
+    --max-w: 1100px;
+    --gutter: 32px;
+}
+
+/* ============================================================ */
+/* RESET                                                        */
+/* ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.75;
+    color: var(--ink);
+    background-color: var(--bg-deep);
+    background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(143, 193, 224, 0.10) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 60%, rgba(212, 168, 75, 0.08)  0%, transparent 40%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Starfield                                                    */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+        radial-gradient(1px 1px at 12% 22%, rgba(236, 227, 200, 0.7), transparent),
+        radial-gradient(1px 1px at 68% 78%, rgba(236, 227, 200, 0.5), transparent),
+        radial-gradient(2px 2px at 82% 14%, rgba(240, 198, 110, 0.6), transparent),
+        radial-gradient(1px 1px at 34% 84%, rgba(143, 193, 224, 0.7), transparent),
+        radial-gradient(1px 1px at 92% 48%, rgba(236, 227, 200, 0.4), transparent),
+        radial-gradient(1px 1px at 8%  66%, rgba(236, 227, 200, 0.6), transparent),
+        radial-gradient(2px 2px at 74% 28%, rgba(143, 193, 224, 0.6), transparent),
+        radial-gradient(1px 1px at 46% 12%, rgba(236, 227, 200, 0.6), transparent),
+        radial-gradient(1px 1px at 18% 50%, rgba(240, 198, 110, 0.5), transparent),
+        radial-gradient(1px 1px at 88% 88%, rgba(236, 227, 200, 0.4), transparent),
+        radial-gradient(1px 1px at 56% 38%, rgba(236, 227, 200, 0.4), transparent),
+        radial-gradient(1px 1px at 28% 72%, rgba(143, 193, 224, 0.5), transparent);
+    background-size: 900px 900px;
+    animation: drift 240s linear infinite;
+    opacity: 0.85;
+}
+
+@keyframes drift {
+    from { background-position: 0 0; }
+    to   { background-position: 900px 900px; }
+}
+
+/* ============================================================ */
+/* NAVIGATION                                                   */
+/* ============================================================ */
+.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(7, 9, 26, 0.92);
+    border-bottom: 1px solid rgba(212, 168, 75, 0.18);
+}
+
+.nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 16px var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.nav-mark {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.nav-mark:hover { color: var(--game-accent); }
+
+.nav-mark .ampersand {
+    color: var(--crystal);
+    font-style: italic;
+    font-weight: 400;
+    margin: 0 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-link,
+.dropdown-trigger {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    font-family: 'Cinzel', serif;
+}
+
+.nav-link:hover,
+.dropdown-trigger:hover {
+    color: var(--game-accent);
+}
+
+.nav-link::after,
+.dropdown-trigger::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background: var(--game-accent);
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.dropdown-trigger:hover::after { width: 100%; }
+
+/* Dropdown                                                     */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-trigger .chev {
+    display: inline-block;
+    margin-left: 6px;
+    transition: transform 0.3s ease;
+    font-size: 8px;
+}
+
+.dropdown.open .dropdown-trigger .chev,
+.dropdown:hover .dropdown-trigger .chev {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    min-width: 280px;
+    background: rgba(10, 12, 30, 0.98);
+    border: 1px solid rgba(212, 168, 75, 0.3);
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(143, 193, 224, 0.08);
+    list-style: none;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.dropdown.open .dropdown-menu,
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li a {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 10px 22px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.dropdown-menu li a:hover {
+    color: var(--gold-bright);
+    background: rgba(212, 168, 75, 0.08);
+    border-left-color: var(--gold);
+    padding-left: 26px;
+}
+
+.dropdown-menu li a .num {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: var(--gold-dim);
+    min-width: 36px;
+    letter-spacing: 0.1em;
+}
+
+.dropdown-menu li a .name {
+    flex: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--ink-fade);
+    transition: color 0.2s ease;
+}
+
+.dropdown-menu li a:hover .name { color: var(--crystal); }
+
+/* ============================================================ */
+/* HERO (index page)                                            */
+/* ============================================================ */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px var(--gutter) 80px;
+    text-align: center;
+    z-index: 1;
+}
+
+.hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.6em;
+    color: var(--ink-fade);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.2s forwards;
+}
+
+.hero-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 88px;
+    letter-spacing: 0.08em;
+    line-height: 1.05;
+    color: var(--gold-bright);
+    text-shadow:
+        0 0 40px rgba(240, 198, 110, 0.35),
+        0 0 80px rgba(240, 198, 110, 0.15);
+    margin-bottom: 14px;
+    opacity: 0;
+    animation: fadeUp 1.4s ease 0.4s forwards;
+}
+
+.hero-title .ampersand {
+    color: var(--crystal);
+    font-style: italic;
+    font-weight: 400;
+    text-shadow: 0 0 40px rgba(143, 193, 224, 0.4);
+}
+
+.hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    max-width: 540px;
+    line-height: 1.5;
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeUp 1.4s ease 0.6s forwards;
+}
+
+.hero-crystal {
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeUp 1.6s ease 0.9s forwards, float 6s ease-in-out infinite 2s;
+}
+
+.scroll-cue {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--ink-fade);
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.3s forwards;
+    transition: color 0.3s ease;
+}
+.scroll-cue:hover { color: var(--gold-bright); }
+.scroll-cue span {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    animation: bounce 2.4s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50%      { transform: translateY(6px); opacity: 1; }
+}
+
+/* ============================================================ */
+/* SECTIONS                                                     */
+/* ============================================================ */
+.section {
+    position: relative;
+    z-index: 1;
+    padding: 100px var(--gutter);
+}
+
+.section-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+}
+
+.section-number {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 44px;
+    letter-spacing: 0.05em;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 48px;
+    max-width: 800px;
+}
+
+.section-title em {
+    color: var(--crystal);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* ============================================================ */
+/* PROSE                                                        */
+/* ============================================================ */
+.prose { max-width: 680px; }
+
+.prose p {
+    font-size: 20px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin-bottom: 26px;
+}
+
+.prose p:last-child { margin-bottom: 0; }
+
+.prose .dropcap {
+    font-family: 'Cinzel', serif;
+    font-size: 72px;
+    font-weight: 500;
+    float: left;
+    line-height: 0.95;
+    padding: 6px 16px 0 0;
+    color: var(--gold);
+    text-shadow: 0 0 24px rgba(212, 168, 75, 0.25);
+}
+
+.prose em { color: var(--ink); font-style: italic; }
+.prose .crystal-word {
+    color: var(--crystal);
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* ============================================================ */
+/* SPLIT LAYOUT                                                 */
+/* ============================================================ */
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.split .aside { position: sticky; top: 120px; }
+.split .aside-art { opacity: 0.85; }
+.split .aside-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-fade);
+    margin-top: 24px;
+    line-height: 1.6;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+
+/* ============================================================ */
+/* PULL QUOTE                                                   */
+/* ============================================================ */
+.pullquote {
+    position: relative;
+    padding: 100px var(--gutter);
+    text-align: center;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(143, 193, 224, 0.04) 50%,
+        transparent 100%);
+    z-index: 1;
+}
+
+.pullquote-text {
+    max-width: 820px;
+    margin: 0 auto;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.4;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+}
+
+.pullquote-mark {
+    font-family: 'Cinzel', serif;
+    font-size: 48px;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 24px;
+    line-height: 1;
+}
+
+.pullquote-text .accent { color: var(--gold-bright); font-style: italic; }
+
+/* ============================================================ */
+/* MUSIC FEATURE (index)                                        */
+/* ============================================================ */
+.music-feature {
+    position: relative;
+    padding: 120px var(--gutter);
+    background-color: var(--bg-paper);
+    background-image:
+        radial-gradient(ellipse at 50% 0%,
+            rgba(143, 193, 224, 0.10) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-mid) 0%, var(--bg-paper) 100%);
+    border-top:    1px solid rgba(143, 193, 224, 0.18);
+    border-bottom: 1px solid rgba(143, 193, 224, 0.18);
+    z-index: 1;
+}
+
+.music-feature-inner { max-width: 820px; margin: 0 auto; }
+.music-feature-header { text-align: center; margin-bottom: 60px; }
+
+.music-feature-number {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.5em;
+    color: var(--crystal);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.music-feature-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 52px;
+    letter-spacing: 0.06em;
+    color: var(--crystal);
+    text-shadow: 0 0 40px rgba(143, 193, 224, 0.25);
+    line-height: 1.1;
+    margin-bottom: 22px;
+}
+
+.music-feature-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink-fade);
+    letter-spacing: 0.05em;
+}
+
+.music-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 36px 0 0;
+}
+
+.music-divider .line {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--crystal-deep), transparent);
+}
+
+.your-essay { color: var(--ink-soft); }
+.your-essay p {
+    font-size: 20px;
+    line-height: 1.85;
+    margin-bottom: 26px;
+}
+.your-essay p:first-child::first-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 56px;
+    font-weight: 500;
+    float: left;
+    line-height: 0.95;
+    padding: 6px 14px 0 0;
+    color: var(--crystal);
+}
+
+/* ============================================================ */
+/* OUTRO                                                        */
+/* ============================================================ */
+.outro {
+    position: relative;
+    padding: 140px var(--gutter) 100px;
+    text-align: center;
+    z-index: 1;
+}
+
+.outro-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: var(--ink-fade);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.outro-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 26px;
+    color: var(--ink);
+    max-width: 640px;
+    margin: 0 auto 30px;
+    line-height: 1.55;
+}
+
+.outro-signature {
+    font-family: 'Italianno', cursive;
+    font-size: 84px;
+    color: var(--gold-bright);
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(240, 198, 110, 0.35);
+    margin-top: 20px;
+}
+
+/* ============================================================ */
+/* FOOTER                                                       */
+/* ============================================================ */
+.footer {
+    position: relative;
+    padding: 50px var(--gutter);
+    text-align: center;
+    border-top: 1px solid rgba(212, 168, 75, 0.12);
+    z-index: 1;
+}
+
+.footer-mark {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--ink-fade);
+    text-transform: uppercase;
+    margin-top: 14px;
+}
+
+/* ============================================================ */
+/* GAME PAGE — HERO                                             */
+/* ============================================================ */
+.game-hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 140px var(--gutter) 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+    background-image: radial-gradient(ellipse at 50% 50%,
+        rgba(var(--game-accent-rgb), 0.14) 0%,
+        transparent 60%);
+}
+
+.game-hero-roman {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 420px;
+    color: var(--game-accent);
+    opacity: 0.06;
+    pointer-events: none;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.game-hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.6em;
+    color: var(--ink-fade);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1.0s ease 0.1s forwards;
+}
+
+.game-hero-series {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    letter-spacing: 0.4em;
+    color: var(--game-accent);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1.0s ease 0.3s forwards;
+    text-shadow: 0 0 30px rgba(var(--game-accent-rgb), 0.4);
+}
+
+.game-hero-numeral {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: 160px;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    color: var(--ink);
+    text-shadow:
+        0 0 60px  rgba(var(--game-accent-rgb), 0.5),
+        0 0 120px rgba(var(--game-accent-rgb), 0.25);
+    margin-bottom: 28px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1.4s ease 0.5s forwards;
+}
+
+.game-hero-descriptor {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--game-accent);
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+    margin-bottom: 16px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1.4s ease 0.7s forwards;
+}
+
+.game-hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 21px;
+    color: var(--ink-soft);
+    letter-spacing: 0.03em;
+    max-width: 600px;
+    line-height: 1.55;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1.4s ease 0.9s forwards;
+}
+
+.game-hero-rule {
+    width: 80px;
+    height: 1px;
+    background: var(--game-accent);
+    margin: 36px 0 0;
+    opacity: 0.6;
+    position: relative;
+}
+
+/* ============================================================ */
+/* GAME INFO CARD                                               */
+/* ============================================================ */
+.info-section {
+    position: relative;
+    padding: 80px var(--gutter);
+    z-index: 1;
+}
+
+.info-card {
+    max-width: 860px;
+    margin: 0 auto;
+    background-color: var(--bg-paper);
+    background-image: linear-gradient(180deg,
+        rgba(var(--game-accent-rgb), 0.05) 0%,
+        rgba(var(--game-accent-rgb), 0) 100%);
+    border: 1px solid rgba(var(--game-accent-rgb), 0.3);
+    padding: 50px 50px;
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        inset 0 0 60px rgba(var(--game-accent-rgb), 0.03);
+    position: relative;
+}
+
+.info-card::before,
+.info-card::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--game-accent);
+    opacity: 0.5;
+}
+.info-card::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+.info-card::after  { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+}
+
+.info-item .label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--ink-fade);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.info-item .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.info-item .value.accent {
+    color: var(--game-accent);
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* ============================================================ */
+/* REVIEW SECTIONS                                              */
+/* ============================================================ */
+.review {
+    position: relative;
+    padding: 60px var(--gutter) 100px;
+    z-index: 1;
+}
+
+.review-inner {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+.review-intro {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.review-intro .label {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.5em;
+    color: var(--game-accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.review-intro .title {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 40px;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    margin-bottom: 18px;
+}
+
+.review-intro .sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-fade);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.review-section {
+    margin-bottom: 70px;
+}
+
+.review-section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 22px;
+    margin-bottom: 26px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(var(--game-accent-rgb), 0.25);
+}
+
+.review-section-number {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--game-accent);
+    min-width: 38px;
+}
+
+.review-section-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-transform: uppercase;
+    flex: 1;
+}
+
+.review-section-prompt {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-fade);
+    letter-spacing: 0.02em;
+}
+
+.review-body {
+    color: var(--ink-soft);
+    font-size: 20px;
+    line-height: 1.85;
+    min-height: 120px;
+}
+
+.review-body p { margin-bottom: 22px; }
+.review-body p:last-child { margin-bottom: 0; }
+
+.review-body .placeholder {
+    color: rgba(138, 126, 94, 0.8);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    display: block;
+    padding: 18px 22px;
+    border-left: 2px solid rgba(var(--game-accent-rgb), 0.4);
+    background: rgba(var(--game-accent-rgb), 0.04);
+}
+
+/* ============================================================ */
+/* VERDICT                                                      */
+/* ============================================================ */
+.verdict {
+    margin-top: 80px;
+    padding: 50px;
+    background-color: var(--bg-paper);
+    background-image: linear-gradient(180deg,
+        rgba(var(--game-accent-rgb), 0.07) 0%,
+        rgba(var(--game-accent-rgb), 0) 100%);
+    border: 1px solid rgba(var(--game-accent-rgb), 0.35);
+    text-align: center;
+    position: relative;
+}
+
+.verdict-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: var(--game-accent);
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+.verdict-rating {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.verdict-rating .crystal-pip {
+    width: 18px;
+    height: 24px;
+}
+
+.verdict-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.55;
+}
+
+.verdict-line .placeholder {
+    color: rgba(138, 126, 94, 0.85);
+}
+
+/* ============================================================ */
+/* GAME FOOTER                                                  */
+/* ============================================================ */
+.game-footer {
+    position: relative;
+    padding: 70px var(--gutter);
+    text-align: center;
+    border-top: 1px solid rgba(var(--game-accent-rgb), 0.18);
+    z-index: 1;
+}
+
+.game-footer .back-link {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s ease, letter-spacing 0.3s ease, border-color 0.3s ease;
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid rgba(var(--game-accent-rgb), 0.35);
+}
+
+.game-footer .back-link:hover {
+    color: var(--game-accent);
+    border-color: var(--game-accent);
+    letter-spacing: 0.5em;
+}
+
+.game-footer .neighbors {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 720px;
+    margin: 40px auto 0;
+    gap: 20px;
+}
+
+.game-footer .neighbor {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--ink-fade);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    flex: 1;
+}
+
+.game-footer .neighbor:hover { color: var(--game-accent); }
+.game-footer .neighbor.prev   { text-align: left; }
+.game-footer .neighbor.next   { text-align: right; }
+.game-footer .neighbor.center { text-align: center; }
+
+.game-footer .neighbor .small {
+    display: block;
+    font-size: 9px;
+    color: var(--gold-dim);
+    margin-bottom: 4px;
+}
+
+.game-footer .neighbor .big {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--ink-soft);
+}
+
+.game-footer .neighbor:hover .big { color: var(--game-accent); }
+
+/* ============================================================ */
+/* RESPONSIVE                                                   */
+/* ============================================================ */
+@media (max-width: 900px) {
+    .hero-title { font-size: 64px; }
+    .section-title { font-size: 34px; }
+    .music-feature-title { font-size: 40px; }
+    .pullquote-text { font-size: 24px; }
+    .outro-line { font-size: 22px; }
+    .outro-signature { font-size: 64px; }
+    .game-hero-numeral { font-size: 110px; }
+    .game-hero-roman { font-size: 280px; }
+    .game-hero-descriptor { font-size: 22px; }
+    .game-hero-series { font-size: 17px; }
+    .review-intro .title { font-size: 32px; }
+}
+
+@media (max-width: 720px) {
+    .nav-links { gap: 18px; }
+    .nav-link,
+    .dropdown-trigger { font-size: 9px; letter-spacing: 0.2em; }
+    .split { grid-template-columns: 1fr; gap: 50px; }
+    .split .aside { position: static; text-align: center; }
+    .section { padding: 70px var(--gutter); }
+    .music-feature { padding: 80px var(--gutter); }
+    .prose p, .your-essay p { font-size: 18px; }
+    .prose .dropcap { font-size: 60px; }
+    .pullquote { padding: 70px var(--gutter); }
+    .info-grid { grid-template-columns: 1fr; gap: 26px; }
+    .info-card { padding: 38px 30px; }
+    .review-body { font-size: 18px; }
+    .game-hero-numeral { font-size: 90px; }
+    .game-hero-roman { font-size: 200px; }
+    .hero-title { font-size: 48px; }
+}
+
+@media (max-width: 480px) {
+    .nav-links { gap: 12px; }
+    :root { --gutter: 20px; }
+    .dropdown-menu { right: -20px; min-width: 240px; }
+    .review-section-header { flex-wrap: wrap; gap: 8px; }
+    .verdict { padding: 36px 26px; }
+}
